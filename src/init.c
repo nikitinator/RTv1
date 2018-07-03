@@ -6,7 +6,7 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/26 19:34:44 by snikitin          #+#    #+#             */
-/*   Updated: 2018/06/14 18:28:06 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/06/15 18:30:02 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,9 @@ void	init_scene(int argc, char **argv, t_scene *scene)
 {
 	(void)argc;
 	(void)argv;
+
 //
-	t_vec_3	cam_pos = {0, 0, 0};
+	t_vec_3	cam_pos = {0, 0, 1};
 	t_vec_3	cam_rot = {0, 0, 0};
 	scene->camera = camera_new(FOV, cam_pos, cam_rot);
 //
@@ -42,9 +43,7 @@ void	init_scene(int argc, char **argv, t_scene *scene)
 	t_object	*objs;
 	if (!(scene->objects = malloc(sizeof(t_object) * 2)))
 		exit(1);
-	
 	objs = scene->objects;
-
 
 	objs[0].pos = (t_vec_3){0, 1, -10};
 	objs[0].color = 0x000000FF; 
@@ -60,6 +59,6 @@ void	init_scene(int argc, char **argv, t_scene *scene)
 
 	if (!(scene->lights= malloc(sizeof(t_light) * 1)))
 		exit(1);
-	//scene->lights->pos = (t_vec_3){2, 2, -5};
-	scene->lights->pos = (t_vec_3){0, 0, 0};
+	scene->lights->pos = (t_vec_3){2, 2, -5};
+	//scene->lights->pos = (t_vec_3){0, 0, 1};
 }

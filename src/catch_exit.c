@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   camera.h                                           :+:      :+:    :+:   */
+/*   catch_exit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/14 13:33:09 by snikitin          #+#    #+#             */
-/*   Updated: 2018/07/03 10:40:47 by snikitin         ###   ########.fr       */
+/*   Created: 2018/07/03 11:10:41 by snikitin          #+#    #+#             */
+/*   Updated: 2018/07/03 11:13:53 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CAMERA_H
-# define CAMERA_H
+#include <SDL.h>
 
-# include "vec_3.h"
-
-typedef struct s_camera t_camera;
-
-struct	s_camera
+int     catch_exit(void)
 {
-	t_vec_3	pos;	
-	t_vec_3	dir;
-	t_vec_3	up;
-	t_vec_3 right;
-};
+    SDL_Event   e;
 
-t_camera	camera_new(double fov, t_vec_3 cam_pos, t_vec_3 cam_rot);
-void		camera_rotate(t_camera * camera, t_vec_3 angles);
-
-#endif
+	while (1)
+	{
+		while (SDL_PollEvent(&e))
+		{
+			if (e.type == SDL_QUIT || (e.type == SDL_KEYDOWN && e.key.keysym.sym ==
+					SDLK_ESCAPE))
+				return (1);
+		}
+	}
+    return (0);
+}

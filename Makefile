@@ -6,12 +6,11 @@
 #    By: snikitin <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/07 17:36:11 by snikitin          #+#    #+#              #
-#    Updated: 2018/06/14 18:00:52 by snikitin         ###   ########.fr        #
+#    Updated: 2018/07/03 11:11:10 by snikitin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME := rtv1        
-
 SRC_DIR := ./src/
 OBJ_DIR := ./obj/
 INC_DIR := ./inc/
@@ -21,11 +20,13 @@ FRM_DIR := ./frm/
 SRC :=	main.c\
 		init.c\
 		vector.c\
+		vector_rotate.c\
 		ray_new.c\
 		ray_trace.c\
 		camera.c\
 		trace_rays.c\
 		update_window.c\
+		catch_exit.c\
 		figures/sphere.c\
 		shade.c
 				
@@ -41,6 +42,7 @@ SDL = $(SDL_DIR)SDL2
 SDL_DIR = $(FRM_DIR)SDL2.framework/
 SDL_INC = $(SDL_DIR)Headers/
 SDL_FLAGS = $(SDL) -rpath $(FRM_DIR)
+#SDL_FLAGS = -framework SDL2 -F $(FRM_DIR)
 
 CC_FLAGS := -Wall -Wextra -Werror -g
 LINK_FLAGS := $(LIBFT_FLAGS) $(SDL_FLAGS)

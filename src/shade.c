@@ -6,7 +6,7 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 12:40:52 by snikitin          #+#    #+#             */
-/*   Updated: 2018/06/14 18:01:32 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/07/03 10:56:28 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ Uint32		shade_pixel(t_object obj, t_vec_3 hitpoint, t_light *lights)//only hit
 	normal = vec_normalize(hitpoint - obj.pos);
 
 	double	dot_p = vec_dot_product(vec_normalize(lights->pos - hitpoint), normal);
-	(void)dot_p;
 
 	clr.c_32 = obj.color;
+	return (clr.c_32);
 	
-	if (dot_p > 0 && dot_p < 1)
+	if (dot_p > 0)//&& dot_p < 1)
 	{
 		clr.c_8[R] *= dot_p;
 		clr.c_8[G] *= dot_p;

@@ -6,7 +6,7 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/24 14:21:02 by snikitin          #+#    #+#             */
-/*   Updated: 2018/06/14 18:00:19 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/07/03 11:13:47 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 //WIDTH ALWAYS >= HEIGHT
 # define SCR_WIDTH  1680
 # define SCR_HEIGHT 1050
-# define FOV	90
+# define FOV 90	
 
 # define A 0
 # define C 1
@@ -119,4 +119,5 @@ void    	trace_rays(t_scene scene, Uint32 *img_arr);
 t_hit		ray_trace(t_ray ray, t_object *object);//peremesti v ray.h
 void		update_window(Uint32 *img_arr, SDL_Texture *texture,
 				SDL_Renderer *renderer);
+int     catch_exit(void);
 #endif
