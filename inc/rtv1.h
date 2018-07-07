@@ -6,7 +6,7 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/24 14:21:02 by snikitin          #+#    #+#             */
-/*   Updated: 2018/07/06 20:26:35 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/07/07 21:01:09 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,10 @@
 # define SCR_HEIGHT 1050
 # define FOV 90	
 
-# define A 0
-# define C 1
 
-# define R 0
+# define R 2
 # define G 1
-# define B 2
+# define B 0
 
 # define SET_PIX(x, y, i, c) i[x + y * SCR_WIDTH] = c
 # define RADIAN(angle) (M_PI/180.0*(angle))
@@ -82,10 +80,8 @@ struct	s_light
 struct	s_object
 {
 	t_vec_3			pos;	
-	int				color;  //UBERI NAHOOOOOY
 	void			*figure;
-	//t_coefficients	(*get_coefficients)(t_object *object, t_ray ray);
-	double			(*get_parameter)(t_object *object, t_ray ray);
+	double			(*get_distance)(t_object *object, t_ray ray);
 	t_vec_3			(*get_normal)(t_object *object, t_vec_3 hitpoint);
 	t_vec_3			ambient;// struct for this
 	t_vec_3			diffuse;
@@ -113,7 +109,8 @@ struct	s_scene
 	t_light		*lights;
 };
 
-Uint32      shade_pixel(t_object *obj, t_vec_3 hitpoint, t_light *lights);
+Uint32		shade_pixel(t_hit hit, t_scene *scene);
+//Uint32      shade_pixel(t_object *obj, t_vec_3 hitpoint, t_light *lights);
 int     	init_drawer(t_drawer *drw);
 void    	init_scene(int argc, char **argv, t_scene *scene);
 void    	trace_rays(t_scene scene, Uint32 *img_arr);

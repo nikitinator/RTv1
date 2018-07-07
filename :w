@@ -6,7 +6,7 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 12:40:52 by snikitin          #+#    #+#             */
-/*   Updated: 2018/07/07 21:13:26 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/07/07 17:53:33 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,61 +26,53 @@ int		see_the_light(t_vec_3 point, t_light *light, t_object *objects)
 	return (1);
 }
 
-t_vec_3	clamp(t_vec_3 result)
-{
-	if (result[0] > 1)
-		result[0] = 1;
-	if (result[1] > 1)
-		result[1] = 1;
-	if (result[2] > 1)
-		result[2] = 1;
-	return (result);
-}
-
 //Uint32		ads_to_rgb(t_vec_3 ambient, t_vec_3 diffuse, t_vec_3 specular)
 Uint32		ads_to_rgb(t_vec_3 result)
 {
 	t_color	clr;
 
 	clr.c_32 = 0;
-	clr.c_8[R] = 255 * result[0];
-	clr.c_8[G] = 255 * result[1];
-	clr.c_8[B] = 255 * result[2];
+	clr.c_8[R] = 255.99 * result[R];
+	clr.c_8[G] = 255.99 * result[G];
+	clr.c_8[B] = 255.99 * result[B];
 	return (clr.c_32);
 }
 
-
-Uint32		shade_pixel(t_hit hit, t_scene *scene)
+Uint32		shade_pixel(t_hit hit, t_light *lights, t_object *objects)
 {
 	//t_vec_3	normal;
-	t_light *lights = scene->lights;
-	t_object *objects = scene->objects;
-	t_camera *camera = &scene->camera;
-	
-	t_vec_3	total;
 
-	ft_bzero(&total, sizeof(t_vec_3));
-	(void)objects;
+	t_vec_3	ambient;
+	t_vec_3	diffuse;
+//	t_vec_3	specular;
+(void)objects;
+
 	while (lights)
 	{
-		total += hit.obj->ambient * lights->ambient;
-
+		ambient = hit.obj->ambient * lights->ambient;
 		t_vec_3	normal = hit.obj->get_normal(hit.obj, hit.pnt);
 		double	dot_p = vec_dot_product(vec_normalize(lights->pos - hit.pnt), normal);
-
 		if (dot_p > 0  && see_the_light(hit.pnt, lights, objects))
-		{
-			total += vec_mul_scal(hit.obj->diffuse * lights->diffuse, dot_p);
-			
-			t_vec_3	l = lights->pos - hit.pnt;
-			t_vec_3	v = camera->pos - hit.pnt;
-			double	h = pow(vec_dot_product(normal, vec_normalize(l + v)), 256);
-			total += vec_mul_scal(hit.obj->specular * lights->specular, h);
-		}
+			diffuse = vec_mul_scal(hit.obj->diffuse * lights->diffuse, dot_p);
+		else
+			ft_bzero(&diffuse, sizeof(t_vec_3));
+		//if (see_the_light(hit.pnt, lights, objects))
+		//{
 		//	specular = hit.obj.specular * lights->specular;
+
+		//}
 		lights = lights->next;
 	}
-	return (ads_to_rgb(clamp(total)));// + specular));
+
+	//(void) objects;
+	//dot_p = vec_dot_product(vec_normalize(lights->pos - hit.pnt), normal);
+
+	//clr.c_32 = hit.obj->color;
+	//{
+	//}
+	//else 
+	//	return (0);
+	return (ads_to_rgb(ambient + diffuse));// + specular));
 }
 
 //Uint32		shade_pixel(t_hit hit, t_light *lights, t_object *objects)

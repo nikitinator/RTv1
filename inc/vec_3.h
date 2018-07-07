@@ -6,7 +6,7 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 15:49:41 by snikitin          #+#    #+#             */
-/*   Updated: 2018/06/15 13:31:31 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/07/07 16:28:54 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
 # define X 0
 # define Y 1
 # define Z 2
-
-# define DOT_PROD(a, b) (a[X] * b[X] + a[Y] * b[Y] + a[Z] * b[Z]) 
 
 typedef double	t_vec_3 __attribute__((vector_size(sizeof(double)*3)));
 

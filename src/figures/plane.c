@@ -6,7 +6,7 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 18:10:08 by snikitin          #+#    #+#             */
-/*   Updated: 2018/07/06 17:41:19 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/07/07 11:52:58 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "vec_3.h"
 #include "ray.h"
 
-double			plane_get_parameter(t_object *object, t_ray ray)
+double			plane_get_distance(t_object *object, t_ray ray)
 {
 	t_vec_3			oc;	
 	t_plane			*plane;

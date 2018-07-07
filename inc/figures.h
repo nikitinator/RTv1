@@ -6,7 +6,7 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 18:08:30 by snikitin          #+#    #+#             */
-/*   Updated: 2018/07/07 11:46:08 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/07/07 17:10:22 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ struct	s_sphere
 };
 void			*new_sphere(double radius);
 //t_coefficients	sphere_get_coefficients(t_object *object, t_ray ray);
-double		sphere_get_parameter(t_object *object, t_ray ray);
+double		sphere_get_distance(t_object *object, t_ray ray);
 t_vec_3			sphere_get_normal(t_object *object, t_vec_3 hitpoint);
 
 /* 
@@ -42,8 +42,8 @@ struct	s_cone
 	t_vec_3	axis;
 	double	tg_half_angle;
 };
-void			*new_cone(t_vec_3 axis, double radius, double angle);
-double			cone_get_parameter(t_object *object, t_ray ray);
+void			*new_cone(t_vec_3 axis, double angle);
+double			cone_get_distance(t_object *object, t_ray ray);
 t_vec_3			cone_get_normal(t_object *object, t_vec_3 hitpoint);
 
 
@@ -56,7 +56,7 @@ struct	s_plane
 	//size???
 };
 void			*new_plane(t_vec_3 normal);
-double			plane_get_parameter(t_object *object, t_ray ray);
+double			plane_get_distance(t_object *object, t_ray ray);
 t_vec_3			plane_get_normal(t_object *object, t_vec_3 hitpoint);
 
 
@@ -69,7 +69,7 @@ struct	s_cylinder
 	double	radius;
 };
 void			*new_cylinder(t_vec_3 axis, double radius);
-double			cylinder_get_parameter(t_object *object, t_ray ray);
+double			cylinder_get_distance(t_object *object, t_ray ray);
 t_vec_3			cylinder_get_normal(t_object *object, t_vec_3 hitpoint);
 
 #endif

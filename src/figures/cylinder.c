@@ -6,7 +6,7 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/06 18:26:14 by snikitin          #+#    #+#             */
-/*   Updated: 2018/07/07 10:38:21 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/07/07 11:54:18 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static t_coefficients	cylinder_get_coefficients(t_object *object, t_ray ray)
 	return (coeff);
 }
 
-double		cylinder_get_parameter(t_object *object, t_ray ray)
+double		cylinder_get_distance(t_object *object, t_ray ray)
 {
 	double			d;	
 	t_coefficients	coef;

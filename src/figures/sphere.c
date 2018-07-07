@@ -6,7 +6,7 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 18:10:08 by snikitin          #+#    #+#             */
-/*   Updated: 2018/07/06 20:30:38 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/07/07 20:57:45 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static t_coefficients	sphere_get_coefficients(t_object *object, t_ray ray)
 	return (coeff);
 }
 
-double		sphere_get_parameter(t_object *object, t_ray ray)
+double		sphere_get_distance(t_object *object, t_ray ray)
 {
 	double			d;	
 	t_coefficients	coef;

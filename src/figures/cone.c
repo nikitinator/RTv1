@@ -6,7 +6,7 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 10:47:25 by snikitin          #+#    #+#             */
-/*   Updated: 2018/07/07 11:43:52 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/07/07 17:09:55 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static t_coefficients	cone_get_coefficients(t_object *object, t_ray ray)
 	return (coeff);
 }
 
-double		cone_get_parameter(t_object *object, t_ray ray)
+double		cone_get_distance(t_object *object, t_ray ray)
 {
 	double			d;	
 	t_coefficients	coef;
@@ -66,13 +66,12 @@ t_vec_3				cone_get_normal(t_object *object, t_vec_3 hitpoint)
 			vec_mul_scal(cone->axis, a)));
 }
 
-void			*new_cone(t_vec_3 axis, double radius, double angle)
+void			*new_cone(t_vec_3 axis, double angle)
 {
 	t_cone	*cone;
 
 	if (!(cone = malloc(sizeof(t_cone))))
 		return (NULL);
-	(void)radius;
 	//cone->radius = radius;
 	cone->axis = axis;
 	cone->tg_half_angle= tan(angle / 2);
