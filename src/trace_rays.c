@@ -6,7 +6,7 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/26 16:19:30 by snikitin          #+#    #+#             */
-/*   Updated: 2018/07/03 10:55:51 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/07/06 17:31:14 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	trace_rays(t_scene scene, Uint32 *img_arr)
 			hit = ray_trace(ray, scene.objects);
 			if ((hit.obj))
 			{
-				Uint32 color = shade_pixel(*hit.obj, hit.pnt, scene.lights);
+				Uint32 color = shade_pixel(hit.obj, hit.pnt, scene.lights);
 				//send maybe only normal from object instead of object (oh and color)
 
 				SET_PIX(x, y, img_arr, color);

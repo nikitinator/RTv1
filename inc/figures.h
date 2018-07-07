@@ -6,15 +6,15 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 18:08:30 by snikitin          #+#    #+#             */
-/*   Updated: 2018/06/14 16:18:57 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/07/07 11:46:08 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FIGURES_H
 # define FIGURES_H
 
+# include "rtv1.h" //coefficients //object
 # include "vec_3.h"
-# include "rtv1.h" //coefficients
 # include "ray.h"
 
 typedef struct s_sphere		t_sphere;
@@ -30,25 +30,46 @@ struct	s_sphere
 	double	radius;
 };
 void			*new_sphere(double radius);
-t_coefficients	sphere_get_coefficients(t_object *object, t_ray ray);
+//t_coefficients	sphere_get_coefficients(t_object *object, t_ray ray);
+double		sphere_get_parameter(t_object *object, t_ray ray);
+t_vec_3			sphere_get_normal(t_object *object, t_vec_3 hitpoint);
 
+/* 
+** Cone
+*/
 struct	s_cone
 {
 	t_vec_3	axis;
-	double	radius;
 	double	tg_half_angle;
 };
+void			*new_cone(t_vec_3 axis, double radius, double angle);
+double			cone_get_parameter(t_object *object, t_ray ray);
+t_vec_3			cone_get_normal(t_object *object, t_vec_3 hitpoint);
 
+
+/* 
+** Plane
+*/
 struct	s_plane
 {
 	t_vec_3	normal;	
 	//size???
 };
+void			*new_plane(t_vec_3 normal);
+double			plane_get_parameter(t_object *object, t_ray ray);
+t_vec_3			plane_get_normal(t_object *object, t_vec_3 hitpoint);
 
+
+/* 
+** Cylinder 
+*/
 struct	s_cylinder
 {
 	t_vec_3	axis;
 	double	radius;
 };
+void			*new_cylinder(t_vec_3 axis, double radius);
+double			cylinder_get_parameter(t_object *object, t_ray ray);
+t_vec_3			cylinder_get_normal(t_object *object, t_vec_3 hitpoint);
 
 #endif

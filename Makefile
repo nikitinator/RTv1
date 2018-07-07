@@ -6,7 +6,7 @@
 #    By: snikitin <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/07 17:36:11 by snikitin          #+#    #+#              #
-#    Updated: 2018/07/03 11:11:10 by snikitin         ###   ########.fr        #
+#    Updated: 2018/07/07 11:32:10 by snikitin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,10 +28,20 @@ SRC :=	main.c\
 		update_window.c\
 		catch_exit.c\
 		figures/sphere.c\
+		figures/plane.c\
+		figures/cylinder.c\
+		figures/cone.c\
 		shade.c
 				
 OBJ = $(addprefix $(OBJ_DIR), $(notdir $(SRC:.c=.o)))
-INC = $(INC_DIR)rtv1.h 
+
+INC =	$(INC_DIR)camera.h\
+		$(INC_DIR)figures.h\
+		$(INC_DIR)ray.h\
+		$(INC_DIR)rtv1.h\
+		$(INC_DIR)vec_3.h\
+
+
 
 LIBFT =			$(LIBFT_DIR)libft.a
 LIBFT_DIR :=    $(LIB_DIR)libft/
@@ -65,7 +75,6 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(INC)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)/*/%.c $(INC)
 	$(CC) -c $< -o $@ $(CC_FLAGS) $(HEADER_FLAGS)
-
 
 $(LIBFT):
 	make -C $(LIBFT_DIR)

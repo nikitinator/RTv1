@@ -6,7 +6,7 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/24 14:21:02 by snikitin          #+#    #+#             */
-/*   Updated: 2018/07/03 11:13:47 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/07/06 20:26:35 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,9 @@
 # include <stdlib.h>
 # include <libft.h>
 # include <fcntl.h>
-# include <stdio.h>
+# include <stdio.h>//
 
 #include "vec_3.h"  //TODO podumai o nuzhnosti ukazaniya vseh
-//#include "figures.h"
 #include "camera.h"
 #include "ray.h"
 
@@ -85,7 +84,9 @@ struct	s_object
 	t_vec_3			pos;	
 	int				color;  //UBERI NAHOOOOOY
 	void			*figure;
-	t_coefficients	(*get_coefficients)(t_object *object, t_ray ray);
+	//t_coefficients	(*get_coefficients)(t_object *object, t_ray ray);
+	double			(*get_parameter)(t_object *object, t_ray ray);
+	t_vec_3			(*get_normal)(t_object *object, t_vec_3 hitpoint);
 	t_vec_3			ambient;// struct for this
 	t_vec_3			diffuse;
 	t_vec_3			specular;
@@ -112,7 +113,7 @@ struct	s_scene
 	t_light		*lights;
 };
 
-Uint32      shade_pixel(t_object obj, t_vec_3 hitpoint, t_light *lights);
+Uint32      shade_pixel(t_object *obj, t_vec_3 hitpoint, t_light *lights);
 int     	init_drawer(t_drawer *drw);
 void    	init_scene(int argc, char **argv, t_scene *scene);
 void    	trace_rays(t_scene scene, Uint32 *img_arr);
@@ -120,4 +121,5 @@ t_hit		ray_trace(t_ray ray, t_object *object);//peremesti v ray.h
 void		update_window(Uint32 *img_arr, SDL_Texture *texture,
 				SDL_Renderer *renderer);
 int     catch_exit(void);
+
 #endif
