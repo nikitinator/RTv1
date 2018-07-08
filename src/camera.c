@@ -6,7 +6,7 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 13:34:06 by snikitin          #+#    #+#             */
-/*   Updated: 2018/07/07 12:08:38 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/07/08 12:30:23 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,6 @@ t_camera	camera_new(double fov, t_vec_3 cam_pos, t_vec_3 cam_rot)
 	camera.dir = 	(t_vec_3){0, 0, -1};
 	camera.up =  	(t_vec_3){0, half_height, 0};
 	camera.right = 	(t_vec_3){half_width, 0, 0}; //TODO zatesti dot product
-	//camera.dir = vector_rotate_z(camera.dir, RADIAN(35));	
-	//camera.up =  vector_rotate_z(camera.up, RADIAN(35));	
-	//camera.right = vector_rotate_z(camera.right, RADIAN(35));
 	camera_rotate(&camera, cam_rot);
 
 	(void)cam_rot;

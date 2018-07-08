@@ -1,29 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   catch_exit.c                                       :+:      :+:    :+:   */
+/*   first_hit_distance.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/03 11:10:41 by snikitin          #+#    #+#             */
-/*   Updated: 2018/07/08 12:48:06 by snikitin         ###   ########.fr       */
+/*   Created: 2018/07/08 12:11:51 by snikitin          #+#    #+#             */
+/*   Updated: 2018/07/08 12:23:00 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <SDL.h>
+#include "figures.h"
+#include <math.h>
 
-int		catch_exit(void)
+inline double	first_hit_distance(t_coefficients coef)
 {
-	SDL_Event	e;
+	double	d;
 
-	while (1)
-	{
-		while (SDL_PollEvent(&e))
-		{
-			if (e.type == SDL_QUIT ||
-					(e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_ESCAPE))
-				return (1);
-		}
-	}
+	d = SQR(coef.b) - 4 * coef.a * coef.c;
+	if (d > 0)
+		return ((-coef.b - sqrt(d)) / (2.0 * coef.a));
 	return (0);
 }

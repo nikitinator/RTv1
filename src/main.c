@@ -6,7 +6,7 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 18:21:36 by snikitin          #+#    #+#             */
-/*   Updated: 2018/07/07 16:35:39 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/07/08 12:56:04 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,15 @@ int		main(int argc, char **argv)
 	t_scene			scene;
 
 	init_scene(argc, argv, &scene);
-	if (!(img_arr = ft_memalloc(sizeof(Uint32) * SCR_WIDTH * SCR_HEIGHT)))
+	if (!(img_arr = ft_memalloc(sizeof(Uint32) * SCR_WIDTH * SCR_HEIGHT))) // norminette may not compile
 		return (1);
 	trace_rays(scene, img_arr);
-
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 		return (1);
 	if (init_drawer(&draw))
 		return (1);
 	update_window(img_arr, draw.texture, draw.renderer);
-	catch_exit(); //fgnya nazwanie
+	catch_exit();
 	SDL_DestroyWindow(draw.window);
 	SDL_Quit();
 	return (0);

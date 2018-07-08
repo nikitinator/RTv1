@@ -6,7 +6,7 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 10:47:25 by snikitin          #+#    #+#             */
-/*   Updated: 2018/07/07 17:09:55 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/07/08 14:26:53 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,65 +14,49 @@
 #include "ray.h"
 #include "figures.h"
 #include "vec_3.h"
-
 #include <math.h>
 
-static t_coefficients	cone_get_coefficients(t_object *object, t_ray ray)
+double	cone_get_distance(t_object *object, t_ray ray)
 {
-	t_vec_3			oc;		//TODO find a name(ray_to_obj_center)
-	t_coefficients	coeff;
+	t_coefficients	coef;
+	t_vec_3			oc;
 	t_cone			*cone;
 
 	cone = (t_cone *)object->figure;
 	oc = ray.pos - object->pos;
-	coeff.a = vec_dot_product(ray.dir, ray.dir) -
-		(1 + cone->tg_half_angle * cone->tg_half_angle) * 
+	coef.a = vec_dot_product(ray.dir, ray.dir) -
+		(1 + cone->tg_half_angle * cone->tg_half_angle) *
 		SQR(vec_dot_product(cone->axis, ray.dir));
-	coeff.b = (vec_dot_product(oc, ray.dir) - 
-		(1 + cone->tg_half_angle * cone->tg_half_angle) * 
-		vec_dot_product(cone->axis, ray.dir) * 
-		vec_dot_product(cone->axis, oc)) *
-		2;
-	coeff.c = vec_dot_product(oc, oc) -
-		(1 + cone->tg_half_angle * cone->tg_half_angle) * 
-		SQR(vec_dot_product(cone->axis, oc)) ;
-		//SQR(5);
-	return (coeff);
+	coef.b = (vec_dot_product(oc, ray.dir) -
+		(1 + cone->tg_half_angle * cone->tg_half_angle) *
+		vec_dot_product(cone->axis, ray.dir) *
+		vec_dot_product(cone->axis, oc)) * 2;
+	coef.c = vec_dot_product(oc, oc) -
+		(1 + cone->tg_half_angle * cone->tg_half_angle) *
+		SQR(vec_dot_product(cone->axis, oc));
+	return (first_hit_distance(coef));
 }
 
-double		cone_get_distance(t_object *object, t_ray ray)
+t_vec_3	cone_get_normal(t_object *object, t_vec_3 hitpoint)
 {
-	double			d;	
-	t_coefficients	coef;
-	//t_cone			*cone;
-
-	coef = cone_get_coefficients(object, ray);
-	d = SQR(coef.b) - 4 * coef.a * coef.c;
-	if (d > 0)
-		return ((-coef.b - sqrt(d)) / (2.0 * coef.a));
-	return (0);
-}
-
-t_vec_3				cone_get_normal(t_object *object, t_vec_3 hitpoint)
-{
-	t_cone			*cone;
+	double	m;
+	t_cone	*cone;
 
 	cone = (t_cone *)object->figure;
-	double	m = (vec_dot_product(hitpoint, cone->axis) -
-				vec_dot_product(object->pos, cone->axis)) /
-				vec_dot_product(cone->axis, cone->axis); //name dat shet
-	double	a = m * cone->tg_half_angle * cone->tg_half_angle;
-	return (vec_normalize(hitpoint - object->pos - vec_mul_scal(cone->axis, m) - 
-			vec_mul_scal(cone->axis, a)));
+	m = (vec_dot_product(hitpoint, cone->axis) -
+		vec_dot_product(object->pos, cone->axis)) /
+		vec_dot_product(cone->axis, cone->axis);
+	return (vec_normalize(hitpoint - object->pos -
+		vec_mul_scal(cone->axis, m) -
+		vec_mul_scal(cone->axis, m * SQR(cone->tg_half_angle))));
 }
 
-void			*new_cone(t_vec_3 axis, double angle)
+void	*new_cone(t_vec_3 axis, double angle)
 {
 	t_cone	*cone;
 
 	if (!(cone = malloc(sizeof(t_cone))))
 		return (NULL);
-	//cone->radius = radius;
 	cone->axis = axis;
 	cone->tg_half_angle= tan(angle / 2);
 	return (cone);

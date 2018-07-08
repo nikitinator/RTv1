@@ -6,7 +6,7 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 12:40:52 by snikitin          #+#    #+#             */
-/*   Updated: 2018/07/07 21:13:26 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/07/08 12:29:58 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,7 @@ Uint32		shade_pixel(t_hit hit, t_scene *scene)
 	t_camera *camera = &scene->camera;
 	
 	t_vec_3	total;
-
-	ft_bzero(&total, sizeof(t_vec_3));
+	total = (t_vec_3){0, 0, 0};
 	(void)objects;
 	while (lights)
 	{
@@ -77,32 +76,7 @@ Uint32		shade_pixel(t_hit hit, t_scene *scene)
 			double	h = pow(vec_dot_product(normal, vec_normalize(l + v)), 256);
 			total += vec_mul_scal(hit.obj->specular * lights->specular, h);
 		}
-		//	specular = hit.obj.specular * lights->specular;
 		lights = lights->next;
 	}
-	return (ads_to_rgb(clamp(total)));// + specular));
+	return (ads_to_rgb(clamp(total)));
 }
-
-//Uint32		shade_pixel(t_hit hit, t_light *lights, t_object *objects)
-//{
-//	t_vec_3	normal;
-//	t_color	clr;
-//	double dot_p;
-//
-//
-//	(void) objects;
-//	normal = hit.obj->get_normal(hit.obj, hit.pnt);
-//	dot_p = vec_dot_product(vec_normalize(lights->pos - hit.pnt), normal);
-//
-//	clr.c_32 = hit.obj->color;
-//	//return (clr.c_32);	
-//	if (dot_p > 0  && see_the_light(hit.pnt, lights, objects))
-//	{
-//		clr.c_8[R] *= dot_p;
-//		clr.c_8[G] *= dot_p;
-//		clr.c_8[B] *= dot_p;
-//	}
-//	else 
-//		return (0);
-//	return (clr.c_32);
-//}

@@ -6,7 +6,7 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 18:08:30 by snikitin          #+#    #+#             */
-/*   Updated: 2018/07/07 17:10:22 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/07/08 12:26:05 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,16 @@
 # include "rtv1.h" //coefficients //object
 # include "vec_3.h"
 # include "ray.h"
+
+typedef struct s_coefficients t_coefficients;
+struct	s_coefficients
+{
+	double	a;
+	double	b;	
+	double	c;	
+};
+
+double	first_hit_distance(t_coefficients coef);
 
 typedef struct s_sphere		t_sphere;
 typedef struct s_cone		t_cone;
@@ -53,7 +63,6 @@ t_vec_3			cone_get_normal(t_object *object, t_vec_3 hitpoint);
 struct	s_plane
 {
 	t_vec_3	normal;	
-	//size???
 };
 void			*new_plane(t_vec_3 normal);
 double			plane_get_distance(t_object *object, t_ray ray);

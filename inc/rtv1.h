@@ -6,7 +6,7 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/24 14:21:02 by snikitin          #+#    #+#             */
-/*   Updated: 2018/07/07 21:01:09 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/07/08 13:36:06 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,14 +52,6 @@ typedef struct s_object	t_object;
 typedef struct s_light	t_light;
 typedef struct s_hit	t_hit;
 typedef struct s_material	t_material;
-typedef struct s_coefficients t_coefficients;
-
-struct	s_coefficients
-{
-	double	a;
-	double	b;	
-	double	c;	
-};
 
 struct	s_material
 {
@@ -80,10 +72,13 @@ struct	s_light
 struct	s_object
 {
 	t_vec_3			pos;	
+
 	void			*figure;
+
 	double			(*get_distance)(t_object *object, t_ray ray);
 	t_vec_3			(*get_normal)(t_object *object, t_vec_3 hitpoint);
-	t_vec_3			ambient;// struct for this
+
+	t_vec_3			ambient;
 	t_vec_3			diffuse;
 	t_vec_3			specular;
 	t_object		*next;
@@ -110,7 +105,6 @@ struct	s_scene
 };
 
 Uint32		shade_pixel(t_hit hit, t_scene *scene);
-//Uint32      shade_pixel(t_object *obj, t_vec_3 hitpoint, t_light *lights);
 int     	init_drawer(t_drawer *drw);
 void    	init_scene(int argc, char **argv, t_scene *scene);
 void    	trace_rays(t_scene scene, Uint32 *img_arr);

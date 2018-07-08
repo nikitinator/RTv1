@@ -6,7 +6,7 @@
 #    By: snikitin <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/07 17:36:11 by snikitin          #+#    #+#              #
-#    Updated: 2018/07/07 11:32:10 by snikitin         ###   ########.fr        #
+#    Updated: 2018/07/08 12:21:52 by snikitin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ SRC :=	main.c\
 		figures/plane.c\
 		figures/cylinder.c\
 		figures/cone.c\
+		figures/first_hit_distance.c\
 		shade.c
 				
 OBJ = $(addprefix $(OBJ_DIR), $(notdir $(SRC:.c=.o)))
@@ -54,7 +55,7 @@ SDL_INC = $(SDL_DIR)Headers/
 SDL_FLAGS = $(SDL) -rpath $(FRM_DIR)
 #SDL_FLAGS = -framework SDL2 -F $(FRM_DIR)
 
-CC_FLAGS := -Wall -Wextra -Werror -g
+CC_FLAGS := -Wall -Wextra -Werror -O3
 LINK_FLAGS := $(LIBFT_FLAGS) $(SDL_FLAGS)
 HEADER_FLAGS := -I $(LIBFT_INC) -I $(SDL_INC) -I $(INC_DIR)
 
