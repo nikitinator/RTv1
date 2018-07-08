@@ -6,7 +6,7 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 13:33:09 by snikitin          #+#    #+#             */
-/*   Updated: 2018/07/03 10:40:47 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/07/08 19:51:16 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,6 @@ struct	s_camera
 };
 
 t_camera	camera_new(double fov, t_vec_3 cam_pos, t_vec_3 cam_rot);
-void		camera_rotate(t_camera * camera, t_vec_3 angles);
+void		camera_rotate(t_camera *camera, t_vec_3 angles);
 
 #endif

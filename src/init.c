@@ -6,7 +6,7 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/26 19:34:44 by snikitin          #+#    #+#             */
-/*   Updated: 2018/07/07 21:19:08 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/07/08 19:27:37 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,12 +81,10 @@ void	init_scene(int argc, char **argv, t_scene *scene)
 	objs[2].get_normal= plane_get_normal; 
 	objs[2].next = objs + 3;
 
-
-
-	objs[3].pos = (t_vec_3){10, 0, -30};
+	objs[3].pos = (t_vec_3){-2, 0, -30};
 	//objs[3].color = 0x003FeF5a; 
-	objs[3].ambient = (t_vec_3){0.1, 0.2, 0.3};
-	objs[3].diffuse = (t_vec_3){0.1, 0.2, 0.3};
+	objs[3].ambient = (t_vec_3){0.2, 0.2, 0.3};
+	objs[3].diffuse = (t_vec_3){0.7, 0.2, 0.3};
 	objs[3].specular = (t_vec_3){1, 1, 1};
 	objs[3].figure = new_cylinder((t_vec_3){0, 1, 0}, 5);
 	objs[3].get_distance= cylinder_get_distance; 
@@ -102,11 +100,9 @@ void	init_scene(int argc, char **argv, t_scene *scene)
 	objs[4].get_normal= cone_get_normal; 
 	objs[4].next =NULL; 
 
-
-
 	if (!(scene->lights= malloc(sizeof(t_light) * 2)))
 		exit(1);
-	scene->lights->pos = (t_vec_3){3, 3, -5};
+	scene->lights->pos = (t_vec_3){0, 0, 0};
 	scene->lights->ambient = (t_vec_3){1, 1, 1};
 	scene->lights->diffuse = (t_vec_3){1, 1, 1};
 	scene->lights->specular = (t_vec_3){1, 1, 1};

@@ -6,27 +6,15 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 12:40:52 by snikitin          #+#    #+#             */
-/*   Updated: 2018/07/08 12:29:58 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/07/08 19:41:42 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
+#include "ray.h"
+#include "vec_3.h"
 
-int		see_the_light(t_vec_3 point, t_light *light, t_object *objects)
-{
-	t_hit	hit;
-
-	hit = ray_trace((t_ray){point, vec_normalize(light->pos - point)}, objects);
-	if (hit.obj &&
-			(vec_magnitude(hit.pnt - point) < vec_magnitude(light->pos - point)))
-	{
-		//printf("%f\n", vec_magnitude(hit.pnt - point));
-		return (0);
-	}
-	return (1);
-}
-
-t_vec_3	clamp(t_vec_3 result)
+static t_vec_3	clamp_to_one(t_vec_3 result)
 {
 	if (result[0] > 1)
 		result[0] = 1;
@@ -37,8 +25,7 @@ t_vec_3	clamp(t_vec_3 result)
 	return (result);
 }
 
-//Uint32		ads_to_rgb(t_vec_3 ambient, t_vec_3 diffuse, t_vec_3 specular)
-Uint32		ads_to_rgb(t_vec_3 result)
+static Uint32	ads_to_rgb(t_vec_3 result)
 {
 	t_color	clr;
 
@@ -49,34 +36,42 @@ Uint32		ads_to_rgb(t_vec_3 result)
 	return (clr.c_32);
 }
 
-
-Uint32		shade_pixel(t_hit hit, t_scene *scene)
+static int		see_the_light(t_vec_3 point, t_vec_3 light_pos,
+		t_object *objects)
 {
-	//t_vec_3	normal;
-	t_light *lights = scene->lights;
-	t_object *objects = scene->objects;
-	t_camera *camera = &scene->camera;
-	
+	t_hit	hit;
+
+	hit = ray_trace((t_ray){point, vec_normalize(light_pos - point)}, objects);
+	if (hit.obj &&
+			(vec_magnitude(hit.pnt - point) < vec_magnitude(light_pos - point)))
+		return (0);
+	return (1);
+}
+
+Uint32			shade_pixel(t_hit hit, t_scene *scene)
+{
 	t_vec_3	total;
+	t_light *lights;
+	t_vec_3	normal;
+	double	dot_p;
+
 	total = (t_vec_3){0, 0, 0};
-	(void)objects;
+	lights = scene->lights;
 	while (lights)
 	{
 		total += hit.obj->ambient * lights->ambient;
-
-		t_vec_3	normal = hit.obj->get_normal(hit.obj, hit.pnt);
-		double	dot_p = vec_dot_product(vec_normalize(lights->pos - hit.pnt), normal);
-
-		if (dot_p > 0  && see_the_light(hit.pnt, lights, objects))
+		normal = hit.obj->get_normal(hit.obj, hit.pnt);
+		dot_p = vec_dot_product(vec_normalize(lights->pos - hit.pnt),
+				normal);
+		if (dot_p > 0 && see_the_light(hit.pnt, lights->pos, scene->objects))
 		{
 			total += vec_mul_scal(hit.obj->diffuse * lights->diffuse, dot_p);
-			
-			t_vec_3	l = lights->pos - hit.pnt;
-			t_vec_3	v = camera->pos - hit.pnt;
-			double	h = pow(vec_dot_product(normal, vec_normalize(l + v)), 256);
-			total += vec_mul_scal(hit.obj->specular * lights->specular, h);
+			total += vec_mul_scal(hit.obj->specular * lights->specular,
+				pow(vec_dot_product(normal,
+				vec_normalize(lights->pos - hit.pnt +
+				scene->camera.pos - hit.pnt)), 256));
 		}
 		lights = lights->next;
 	}
-	return (ads_to_rgb(clamp(total)));
+	return (ads_to_rgb(clamp_to_one(total)));
 }

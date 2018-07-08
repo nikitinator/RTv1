@@ -6,7 +6,7 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 18:10:08 by snikitin          #+#    #+#             */
-/*   Updated: 2018/07/08 13:58:58 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/07/08 15:02:09 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 double	sphere_get_distance(t_object *object, t_ray ray)
 {
 	t_coefficients	coef;
-	t_vec_3			oc;		
+	t_vec_3			oc;
 
 	oc = ray.pos - object->pos;
 	coef.a = vec_dot_product(ray.dir, ray.dir);
