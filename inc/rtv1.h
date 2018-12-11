@@ -6,7 +6,7 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/24 14:21:02 by snikitin          #+#    #+#             */
-/*   Updated: 2018/07/08 13:36:06 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/12/11 14:30:10 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <fcntl.h>
 # include <stdio.h>//
 
+#include "object.h"
 #include "vec_3.h"  //TODO podumai o nuzhnosti ukazaniya vseh
 #include "camera.h"
 #include "ray.h"
@@ -48,7 +49,6 @@ typedef unsigned short	t_ushort;
 
 typedef struct s_drawer	t_drawer;
 typedef struct s_scene	t_scene;
-typedef struct s_object	t_object;
 typedef struct s_light	t_light;
 typedef struct s_hit	t_hit;
 typedef struct s_material	t_material;
@@ -69,20 +69,6 @@ struct	s_light
 	t_light	*next;
 };
 
-struct	s_object
-{
-	t_vec_3			pos;	
-
-	void			*figure;
-
-	double			(*get_distance)(t_object *object, t_ray ray);
-	t_vec_3			(*get_normal)(t_object *object, t_vec_3 hitpoint);
-
-	t_vec_3			ambient;
-	t_vec_3			diffuse;
-	t_vec_3			specular;
-	t_object		*next;
-};
 
 struct s_hit
 {

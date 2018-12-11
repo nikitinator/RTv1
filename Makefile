@@ -6,7 +6,7 @@
 #    By: snikitin <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/07 17:36:11 by snikitin          #+#    #+#              #
-#    Updated: 2018/08/07 15:11:12 by snikitin         ###   ########.fr        #
+#    Updated: 2018/12/11 14:23:33 by snikitin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,7 @@ INC =	$(INC_DIR)camera.h\
 		$(INC_DIR)rtv1.h\
 		$(INC_DIR)vec_3.h\
 		$(INC_DIR)parser.h\
+		$(INC_DIR)object.h\
 
 
 

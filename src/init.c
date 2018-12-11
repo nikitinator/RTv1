@@ -6,12 +6,13 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/26 19:34:44 by snikitin          #+#    #+#             */
-/*   Updated: 2018/08/07 14:52:50 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/12/11 14:29:05 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 #include "figures.h"
+#include "object.h"
 
 void	init_scene(int argc, char **argv, t_scene *scene)
 {

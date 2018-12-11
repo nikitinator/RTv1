@@ -6,7 +6,7 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 18:08:30 by snikitin          #+#    #+#             */
-/*   Updated: 2018/12/11 14:09:41 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/12/11 16:07:09 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ struct	s_sphere
 	double	radius;
 };
 void			*new_sphere(double radius);
-//t_coefficients	sphere_get_coefficients(t_object *object, t_ray ray);
 double			sphere_get_distance(t_object *object, t_ray ray);
 t_vec_3			sphere_get_normal(t_object *object, t_vec_3 hitpoint);
 
