@@ -1,0 +1,44 @@
+camera
+	position	{0, 0, 0}
+	rotation	{0, 0, 0}
+	fov			90
+
+sphere
+	radius		5
+	position	{0, 0, 0}
+	rotation	{0, 0, 0}
+	ambient		{0, 0.3, 0.3}
+	diffuse		{0, 0.6, 0.6}
+	specular	{1, 1, 1}
+
+cylinder
+	radius		5
+	axis		{0, 0, 0}
+	position	{0, 0, 0}
+	rotation	{0, 0, 0}
+	ambient		{0, 0, 0}
+	diffuse		{0, 0, 0}
+	specular	{1, 1, 1}
+
+cone
+	angle		15
+	axis		{0, 0, 0}
+	position	{0, 0, 0}
+	rotation	{0, 0, 0}
+	ambient		{0, 0, 0}
+	diffuse		{0, 0, 0}
+	specular	{1, 1, 1}
+
+plane
+	position	{0, 0, 0}
+	normal		{0, 0, 0}
+	rotation	{0, 0, 0}
+	ambient		{0, 0, 0}
+	diffuse		{0, 0, 0}
+	specular	{1, 1, 1}
+
+light
+	position	{0, 0, 0}
+	ambient		{1, 1, 1}
+	diffuse		{1, 1, 1}
+	specular	{1, 1, 1}

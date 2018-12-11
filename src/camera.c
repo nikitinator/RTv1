@@ -6,7 +6,7 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 13:34:06 by snikitin          #+#    #+#             */
-/*   Updated: 2018/07/08 19:54:25 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/07/31 17:24:21 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void		camera_rotate(t_camera *camera, t_vec_3 angles)
 	camera->up = vector_rotate_x(camera->up, RADIAN(angles[X]));
 	camera->right = vector_rotate_x(camera->right, RADIAN(angles[X]));
 	camera->dir = vector_rotate_y(camera->dir, RADIAN(-angles[Y]));
-	camera->up = vector_rotate_y(camera->up, RADIAN(-angles[Y]));// '-' sign
+	camera->up = vector_rotate_y(camera->up, RADIAN(-angles[Y]));  // '-' sign
 	camera->right = vector_rotate_y(camera->right, RADIAN(-angles[Y]));
 	camera->dir = vector_rotate_z(camera->dir, RADIAN(angles[Z]));
 	camera->up = vector_rotate_z(camera->up, RADIAN(angles[Z]));

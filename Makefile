@@ -6,7 +6,7 @@
 #    By: snikitin <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/07 17:36:11 by snikitin          #+#    #+#              #
-#    Updated: 2018/07/08 12:21:52 by snikitin         ###   ########.fr        #
+#    Updated: 2018/08/07 15:11:12 by snikitin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ FRM_DIR := ./frm/
 
 SRC :=	main.c\
 		init.c\
+		init_drawer.c\
 		vector.c\
 		vector_rotate.c\
 		ray_new.c\
@@ -32,6 +33,7 @@ SRC :=	main.c\
 		figures/cylinder.c\
 		figures/cone.c\
 		figures/first_hit_distance.c\
+		parser/parser_init_scene.c\
 		shade.c
 				
 OBJ = $(addprefix $(OBJ_DIR), $(notdir $(SRC:.c=.o)))
@@ -41,6 +43,7 @@ INC =	$(INC_DIR)camera.h\
 		$(INC_DIR)ray.h\
 		$(INC_DIR)rtv1.h\
 		$(INC_DIR)vec_3.h\
+		$(INC_DIR)parser.h\
 
 
 

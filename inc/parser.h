@@ -1,37 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   trace_rays.c                                       :+:      :+:    :+:   */
+/*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/26 16:19:30 by snikitin          #+#    #+#             */
-/*   Updated: 2018/07/31 17:16:03 by snikitin         ###   ########.fr       */
+/*   Created: 2018/07/31 18:46:16 by snikitin          #+#    #+#             */
+/*   Updated: 2018/08/07 15:09:14 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
-#include "ray.h"
+#ifndef PARSER_H 
+# define PARSER_H 
 
-void	trace_rays(t_scene scene, Uint32 *img_arr)
+int		parser_init_scene(int argc, char **argv, t_scene *scene);
+
+//private-----------------------------------------------------------------------
+enum e_parser_errors
 {
-	short		x;
-	short		y;
-	t_hit		hit;
-	t_ray		ray;
+	PARSER_WRONG_USAGE = 1,
+	PARSER_INVALID_FILE,
+};
 
-	y = 0;
-	while (y < SCR_HEIGHT)
-	{
-		x = 0;
-		while (x < SCR_WIDTH)
-		{
-			ray = ray_new(x, y, scene.camera);	//(camera should generate rays)
-			hit = ray_trace(ray, scene.objects);
-			if ((hit.obj))
-				SET_PIX(x, y, img_arr, shade_pixel(hit, &scene));
-			x++;
-		}
-		y++;
-	}
-}
+#endif
+

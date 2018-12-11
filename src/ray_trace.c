@@ -6,12 +6,11 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 14:34:42 by snikitin          #+#    #+#             */
-/*   Updated: 2018/07/08 12:56:17 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/07/31 17:07:35 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
-
 #define EPS 0.0000000000001 //in C file wow
 
 t_hit			ray_trace(t_ray ray, t_object *object)

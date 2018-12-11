@@ -6,14 +6,14 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/08 12:11:51 by snikitin          #+#    #+#             */
-/*   Updated: 2018/07/08 12:23:00 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/08/07 14:45:22 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "figures.h"
 #include <math.h>
 
-inline double	first_hit_distance(t_coefficients coef)
+double	first_hit_distance(t_coefficients coef)
 {
 	double	d;
 
